@@ -19,19 +19,14 @@
 @implementation ViewController
 
 - (void)viewDidLoad {
-  [super viewDidLoad];
 
+  [super viewDidLoad];
   //执行串行队列；
 //  [self serailQueue];
   
   //执行并发队列；
 //  [self concurrent];
-  
-  
 
-  
-  
-  
   [GCDQueue executeInGlobalQueue:^{
     
     //处理业务逻辑
@@ -40,28 +35,17 @@
     NSData *picData = [NSURLConnection sendSynchronousRequest:request
                                             returningResponse:nil
                                                         error:nil];
-    
     NSLog(@"处理业务逻辑");
-    
     //获取图片；
     self.image = [UIImage imageWithData:picData];
-    
     [GCDQueue executeInMainQueue:^{
       
       NSLog(@"更新UI");
-      
       //更新UI
       [self.imageView setImage:self.image];
-      
-      
     }];
-    
-    
   }];
-  
 }
-
-
 //并发队列；
 //- (void)concurrent{
 //  //创建出队列；
