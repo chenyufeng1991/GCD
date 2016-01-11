@@ -18,30 +18,22 @@
 @implementation ViewController
 
 - (void)viewDidLoad {
-  [super viewDidLoad];
 
-  
+  [super viewDidLoad];
   //运行GCDTimer
   [self runGCDTimer];
-  
 }
 
 - (void)runGCDTimer{
-
   //初始化定时器
   self.timer = [[GCDTimer alloc] initInQueue:[GCDQueue mainQueue]];
-  
   //指定时间间隔以及要执行的事件；
   [self.timer event:^{
-    
     //在这里写入需要重复执行的代码；
     NSLog(@"GCD定时器");
   } timeIntervalWithSecs:1.f];
-  
   //运行
   [self.timer start];
 }
-
-
 
 @end
